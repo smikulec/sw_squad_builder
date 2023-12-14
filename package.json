@@ -7,15 +7,23 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint '*/**/*.{js,jsx,ts,tsx}' --quiet",
-    "format": "prettier --write '*/**/*.{js,jsx,ts,tsx,json,css,md}'"
+    "format": "prettier --write '*/**/*.{js,jsx,ts,tsx,json,css,md}'",
+    "generate-gql-types": "graphql-codegen --config codegen.yml"
   },
   "dependencies": {
+    "@apollo/client": "^3.8.8",
+    "@apollo/experimental-nextjs-app-support": "^0.5.2",
     "@headlessui/react": "^1.7.17",
+    "graphql": "^16.8.1",
     "next": "14.0.4",
     "react": "^18",
     "react-dom": "^18"
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "5.0.0",
+    "@graphql-codegen/typescript": "^4.0.1",
+    "@graphql-codegen/typescript-operations": "^4.0.1",
+    "@graphql-codegen/typescript-react-apollo": "^4.1.0",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

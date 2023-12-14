@@ -1,0 +1,11 @@
+query AllPeople {
+  allPeople {
+    id
+    name
+    image
+    species {
+      id
+      name
+    }
+  }
+}
