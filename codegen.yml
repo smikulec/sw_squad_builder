@@ -2,5 +2,5 @@ overwrite: true
 schema: 'https://fe-case-study.vercel.app/api/graphql'
 documents: 'graphql/**/*.graphql'
 generates:
-  './graphql/generated/shema.ts':
+  './graphql/generated/schema.ts':
     plugins: [typescript, typescript-operations, typescript-react-apollo]
