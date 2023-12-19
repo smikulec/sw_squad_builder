@@ -1,0 +1,42 @@
+mutation CreateSquad($name: String!, $characters: [ID!]!) {
+  createSquad(name: $name, characters: $characters) {
+    id
+    name
+    characters {
+      id
+      name
+      birthYear
+      eyeColor
+      gender
+      hairColor
+      height
+      mass
+      skinColor
+      homeworld {
+        id
+        name
+      }
+      films {
+        id
+        title
+      }
+      species {
+        id
+        name
+      }
+      image
+      starships {
+        id
+        name
+      }
+      vehicles {
+        id
+        name
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}

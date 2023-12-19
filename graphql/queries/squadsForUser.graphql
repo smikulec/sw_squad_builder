@@ -1,0 +1,11 @@
+query SquadsForUser {
+  squads {
+    id
+    name
+    characters {
+      id
+      image
+      name
+    }
+  }
+}

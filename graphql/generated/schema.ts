@@ -2,33 +2,20 @@ import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
-export type Exact<T extends { [key: string]: unknown }> = {
-  [K in keyof T]: T[K];
-};
-export type MakeOptional<T, K extends keyof T> = Omit<T, K> & {
-  [SubKey in K]?: Maybe<T[SubKey]>;
-};
-export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & {
-  [SubKey in K]: Maybe<T[SubKey]>;
-};
-export type MakeEmpty<
-  T extends { [key: string]: unknown },
-  K extends keyof T,
-> = { [_ in K]?: never };
-export type Incremental<T> =
-  | T
-  | {
-      [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never;
-    };
+export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
+export type MakeEmpty<T extends { [key: string]: unknown }, K extends keyof T> = { [_ in K]?: never };
+export type Incremental<T> = T | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never };
 const defaultOptions = {} as const;
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
-  ID: { input: string; output: string };
-  String: { input: string; output: string };
-  Boolean: { input: boolean; output: boolean };
-  Int: { input: number; output: number };
-  Float: { input: number; output: number };
-  DateTime: { input: any; output: any };
+  ID: { input: string; output: string; }
+  String: { input: string; output: string; }
+  Boolean: { input: boolean; output: boolean; }
+  Int: { input: number; output: number; }
+  Float: { input: number; output: number; }
+  DateTime: { input: any; output: any; }
 };
 
 export type AuthenticatedUser = {
@@ -62,15 +49,18 @@ export type Mutation = {
   signup?: Maybe<AuthenticatedUser>;
 };
 
+
 export type MutationCreateSquadArgs = {
   characters: Array<Scalars['ID']['input']>;
   name: Scalars['String']['input'];
 };
 
+
 export type MutationLoginArgs = {
   email: Scalars['String']['input'];
   password: Scalars['String']['input'];
 };
+
 
 export type MutationSignupArgs = {
   email: Scalars['String']['input'];
@@ -135,29 +125,36 @@ export type Query = {
   vehicle?: Maybe<Vehicle>;
 };
 
+
 export type QueryFilmArgs = {
   id: Scalars['ID']['input'];
 };
+
 
 export type QueryPersonArgs = {
   id: Scalars['ID']['input'];
 };
 
+
 export type QueryPlanetArgs = {
   id: Scalars['ID']['input'];
 };
+
 
 export type QuerySpeciesArgs = {
   id: Scalars['ID']['input'];
 };
 
+
 export type QuerySquadArgs = {
   id: Scalars['ID']['input'];
 };
 
+
 export type QueryStarshipArgs = {
   id: Scalars['ID']['input'];
 };
+
 
 export type QueryVehicleArgs = {
   id: Scalars['ID']['input'];
@@ -241,87 +238,121 @@ export type Vehicle = {
   vehicleClass?: Maybe<Scalars['String']['output']>;
 };
 
-export type AllPeopleQueryVariables = Exact<{ [key: string]: never }>;
+export type CreateSquadMutationVariables = Exact<{
+  name: Scalars['String']['input'];
+  characters: Array<Scalars['ID']['input']> | Scalars['ID']['input'];
+}>;
 
-export type AllPeopleQuery = {
-  __typename?: 'Query';
-  allPeople?: Array<{
-    __typename?: 'Person';
-    id: string;
-    name?: string | null;
-    image?: string | null;
-    species?: {
-      __typename?: 'Species';
-      id: string;
-      name?: string | null;
-    } | null;
-  } | null> | null;
-};
+
+export type CreateSquadMutation = { __typename?: 'Mutation', createSquad?: { __typename?: 'Squad', id: string, name?: string | null, createdAt?: any | null, updatedAt?: any | null, characters?: Array<{ __typename?: 'Person', id: string, name?: string | null, birthYear?: string | null, eyeColor?: string | null, gender?: string | null, hairColor?: string | null, height?: number | null, mass?: number | null, skinColor?: string | null, image?: string | null, createdAt?: any | null, updatedAt?: any | null, homeworld?: { __typename?: 'Planet', id: string, name?: string | null } | null, films?: Array<{ __typename?: 'Film', id: string, title?: string | null } | null> | null, species?: { __typename?: 'Species', id: string, name?: string | null } | null, starships?: Array<{ __typename?: 'Starship', id: string, name?: string | null } | null> | null, vehicles?: Array<{ __typename?: 'Vehicle', id: string, name?: string | null } | null> | null } | null> | null } | null };
+
+export type AllPeopleQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type AllPeopleQuery = { __typename?: 'Query', allPeople?: Array<{ __typename?: 'Person', id: string, name?: string | null, image?: string | null, species?: { __typename?: 'Species', id: string, name?: string | null } | null } | null> | null };
 
 export type GetPersonByIdQueryVariables = Exact<{
   personId: Scalars['ID']['input'];
 }>;
 
-export type GetPersonByIdQuery = {
-  __typename?: 'Query';
-  person?: {
-    __typename?: 'Person';
-    id: string;
-    name?: string | null;
-    birthYear?: string | null;
-    eyeColor?: string | null;
-    gender?: string | null;
-    hairColor?: string | null;
-    height?: number | null;
-    mass?: number | null;
-    skinColor?: string | null;
-    image?: string | null;
-    createdAt?: any | null;
-    updatedAt?: any | null;
-    homeworld?: {
-      __typename?: 'Planet';
-      name?: string | null;
-      population?: number | null;
-    } | null;
-    films?: Array<{
-      __typename?: 'Film';
-      title?: string | null;
-      director?: string | null;
-    } | null> | null;
-    species?: { __typename?: 'Species'; name?: string | null } | null;
-    starships?: Array<{
-      __typename?: 'Starship';
-      name?: string | null;
-      model?: string | null;
-    } | null> | null;
-    vehicles?: Array<{
-      __typename?: 'Vehicle';
-      name?: string | null;
-      model?: string | null;
-    } | null> | null;
-  } | null;
-};
 
-export type UserQueryVariables = Exact<{ [key: string]: never }>;
+export type GetPersonByIdQuery = { __typename?: 'Query', person?: { __typename?: 'Person', id: string, name?: string | null, birthYear?: string | null, eyeColor?: string | null, gender?: string | null, hairColor?: string | null, height?: number | null, mass?: number | null, skinColor?: string | null, image?: string | null, createdAt?: any | null, updatedAt?: any | null, homeworld?: { __typename?: 'Planet', name?: string | null, population?: number | null } | null, films?: Array<{ __typename?: 'Film', title?: string | null, director?: string | null } | null> | null, species?: { __typename?: 'Species', name?: string | null } | null, starships?: Array<{ __typename?: 'Starship', name?: string | null, model?: string | null } | null> | null, vehicles?: Array<{ __typename?: 'Vehicle', name?: string | null, model?: string | null } | null> | null } | null };
 
-export type UserQuery = {
-  __typename?: 'Query';
-  me?: { __typename?: 'User'; id: string; email?: string | null } | null;
-};
+export type SquadsForUserQueryVariables = Exact<{ [key: string]: never; }>;
 
-export const AllPeopleDocument = gql`
-  query AllPeople {
-    allPeople {
+
+export type SquadsForUserQuery = { __typename?: 'Query', squads: Array<{ __typename?: 'Squad', id: string, name?: string | null, characters?: Array<{ __typename?: 'Person', id: string, image?: string | null, name?: string | null } | null> | null } | null> };
+
+export type UserQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type UserQuery = { __typename?: 'Query', me?: { __typename?: 'User', id: string, email?: string | null } | null };
+
+
+export const CreateSquadDocument = gql`
+    mutation CreateSquad($name: String!, $characters: [ID!]!) {
+  createSquad(name: $name, characters: $characters) {
+    id
+    name
+    characters {
       id
       name
-      image
+      birthYear
+      eyeColor
+      gender
+      hairColor
+      height
+      mass
+      skinColor
+      homeworld {
+        id
+        name
+      }
+      films {
+        id
+        title
+      }
       species {
         id
         name
       }
+      image
+      starships {
+        id
+        name
+      }
+      vehicles {
+        id
+        name
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+    `;
+export type CreateSquadMutationFn = Apollo.MutationFunction<CreateSquadMutation, CreateSquadMutationVariables>;
+
+/**
+ * __useCreateSquadMutation__
+ *
+ * To run a mutation, you first call `useCreateSquadMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateSquadMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createSquadMutation, { data, loading, error }] = useCreateSquadMutation({
+ *   variables: {
+ *      name: // value for 'name'
+ *      characters: // value for 'characters'
+ *   },
+ * });
+ */
+export function useCreateSquadMutation(baseOptions?: Apollo.MutationHookOptions<CreateSquadMutation, CreateSquadMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreateSquadMutation, CreateSquadMutationVariables>(CreateSquadDocument, options);
+      }
+export type CreateSquadMutationHookResult = ReturnType<typeof useCreateSquadMutation>;
+export type CreateSquadMutationResult = Apollo.MutationResult<CreateSquadMutation>;
+export type CreateSquadMutationOptions = Apollo.BaseMutationOptions<CreateSquadMutation, CreateSquadMutationVariables>;
+export const AllPeopleDocument = gql`
+    query AllPeople {
+  allPeople {
+    id
+    name
+    image
+    species {
+      id
+      name
     }
   }
-`;
+}
+    `;
 
 /**
  * __useAllPeopleQuery__
@@ -338,90 +369,59 @@ export const AllPeopleDocument = gql`
  *   },
  * });
  */
-export function useAllPeopleQuery(
-  baseOptions?: Apollo.QueryHookOptions<
-    AllPeopleQuery,
-    AllPeopleQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<AllPeopleQuery, AllPeopleQueryVariables>(
-    AllPeopleDocument,
-    options,
-  );
-}
-export function useAllPeopleLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    AllPeopleQuery,
-    AllPeopleQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<AllPeopleQuery, AllPeopleQueryVariables>(
-    AllPeopleDocument,
-    options,
-  );
-}
-export function useAllPeopleSuspenseQuery(
-  baseOptions?: Apollo.SuspenseQueryHookOptions<
-    AllPeopleQuery,
-    AllPeopleQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useSuspenseQuery<AllPeopleQuery, AllPeopleQueryVariables>(
-    AllPeopleDocument,
-    options,
-  );
-}
+export function useAllPeopleQuery(baseOptions?: Apollo.QueryHookOptions<AllPeopleQuery, AllPeopleQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<AllPeopleQuery, AllPeopleQueryVariables>(AllPeopleDocument, options);
+      }
+export function useAllPeopleLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<AllPeopleQuery, AllPeopleQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<AllPeopleQuery, AllPeopleQueryVariables>(AllPeopleDocument, options);
+        }
+export function useAllPeopleSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<AllPeopleQuery, AllPeopleQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<AllPeopleQuery, AllPeopleQueryVariables>(AllPeopleDocument, options);
+        }
 export type AllPeopleQueryHookResult = ReturnType<typeof useAllPeopleQuery>;
-export type AllPeopleLazyQueryHookResult = ReturnType<
-  typeof useAllPeopleLazyQuery
->;
-export type AllPeopleSuspenseQueryHookResult = ReturnType<
-  typeof useAllPeopleSuspenseQuery
->;
-export type AllPeopleQueryResult = Apollo.QueryResult<
-  AllPeopleQuery,
-  AllPeopleQueryVariables
->;
+export type AllPeopleLazyQueryHookResult = ReturnType<typeof useAllPeopleLazyQuery>;
+export type AllPeopleSuspenseQueryHookResult = ReturnType<typeof useAllPeopleSuspenseQuery>;
+export type AllPeopleQueryResult = Apollo.QueryResult<AllPeopleQuery, AllPeopleQueryVariables>;
 export const GetPersonByIdDocument = gql`
-  query GetPersonById($personId: ID!) {
-    person(id: $personId) {
-      id
+    query GetPersonById($personId: ID!) {
+  person(id: $personId) {
+    id
+    name
+    birthYear
+    eyeColor
+    gender
+    hairColor
+    height
+    mass
+    skinColor
+    homeworld {
       name
-      birthYear
-      eyeColor
-      gender
-      hairColor
-      height
-      mass
-      skinColor
-      homeworld {
-        name
-        population
-      }
-      films {
-        title
-        director
-      }
-      species {
-        name
-      }
-      image
-      starships {
-        name
-        model
-      }
-      vehicles {
-        name
-        model
-      }
-      createdAt
-      updatedAt
+      population
     }
+    films {
+      title
+      director
+    }
+    species {
+      name
+    }
+    image
+    starships {
+      name
+      model
+    }
+    vehicles {
+      name
+      model
+    }
+    createdAt
+    updatedAt
   }
-`;
+}
+    `;
 
 /**
  * __useGetPersonByIdQuery__
@@ -439,63 +439,75 @@ export const GetPersonByIdDocument = gql`
  *   },
  * });
  */
-export function useGetPersonByIdQuery(
-  baseOptions: Apollo.QueryHookOptions<
-    GetPersonByIdQuery,
-    GetPersonByIdQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<GetPersonByIdQuery, GetPersonByIdQueryVariables>(
-    GetPersonByIdDocument,
-    options,
-  );
-}
-export function useGetPersonByIdLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    GetPersonByIdQuery,
-    GetPersonByIdQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<GetPersonByIdQuery, GetPersonByIdQueryVariables>(
-    GetPersonByIdDocument,
-    options,
-  );
-}
-export function useGetPersonByIdSuspenseQuery(
-  baseOptions?: Apollo.SuspenseQueryHookOptions<
-    GetPersonByIdQuery,
-    GetPersonByIdQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useSuspenseQuery<
-    GetPersonByIdQuery,
-    GetPersonByIdQueryVariables
-  >(GetPersonByIdDocument, options);
-}
-export type GetPersonByIdQueryHookResult = ReturnType<
-  typeof useGetPersonByIdQuery
->;
-export type GetPersonByIdLazyQueryHookResult = ReturnType<
-  typeof useGetPersonByIdLazyQuery
->;
-export type GetPersonByIdSuspenseQueryHookResult = ReturnType<
-  typeof useGetPersonByIdSuspenseQuery
->;
-export type GetPersonByIdQueryResult = Apollo.QueryResult<
-  GetPersonByIdQuery,
-  GetPersonByIdQueryVariables
->;
-export const UserDocument = gql`
-  query User {
-    me {
+export function useGetPersonByIdQuery(baseOptions: Apollo.QueryHookOptions<GetPersonByIdQuery, GetPersonByIdQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetPersonByIdQuery, GetPersonByIdQueryVariables>(GetPersonByIdDocument, options);
+      }
+export function useGetPersonByIdLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetPersonByIdQuery, GetPersonByIdQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetPersonByIdQuery, GetPersonByIdQueryVariables>(GetPersonByIdDocument, options);
+        }
+export function useGetPersonByIdSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<GetPersonByIdQuery, GetPersonByIdQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<GetPersonByIdQuery, GetPersonByIdQueryVariables>(GetPersonByIdDocument, options);
+        }
+export type GetPersonByIdQueryHookResult = ReturnType<typeof useGetPersonByIdQuery>;
+export type GetPersonByIdLazyQueryHookResult = ReturnType<typeof useGetPersonByIdLazyQuery>;
+export type GetPersonByIdSuspenseQueryHookResult = ReturnType<typeof useGetPersonByIdSuspenseQuery>;
+export type GetPersonByIdQueryResult = Apollo.QueryResult<GetPersonByIdQuery, GetPersonByIdQueryVariables>;
+export const SquadsForUserDocument = gql`
+    query SquadsForUser {
+  squads {
+    id
+    name
+    characters {
       id
-      email
+      image
+      name
     }
   }
-`;
+}
+    `;
+
+/**
+ * __useSquadsForUserQuery__
+ *
+ * To run a query within a React component, call `useSquadsForUserQuery` and pass it any options that fit your needs.
+ * When your component renders, `useSquadsForUserQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useSquadsForUserQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useSquadsForUserQuery(baseOptions?: Apollo.QueryHookOptions<SquadsForUserQuery, SquadsForUserQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<SquadsForUserQuery, SquadsForUserQueryVariables>(SquadsForUserDocument, options);
+      }
+export function useSquadsForUserLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<SquadsForUserQuery, SquadsForUserQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<SquadsForUserQuery, SquadsForUserQueryVariables>(SquadsForUserDocument, options);
+        }
+export function useSquadsForUserSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<SquadsForUserQuery, SquadsForUserQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<SquadsForUserQuery, SquadsForUserQueryVariables>(SquadsForUserDocument, options);
+        }
+export type SquadsForUserQueryHookResult = ReturnType<typeof useSquadsForUserQuery>;
+export type SquadsForUserLazyQueryHookResult = ReturnType<typeof useSquadsForUserLazyQuery>;
+export type SquadsForUserSuspenseQueryHookResult = ReturnType<typeof useSquadsForUserSuspenseQuery>;
+export type SquadsForUserQueryResult = Apollo.QueryResult<SquadsForUserQuery, SquadsForUserQueryVariables>;
+export const UserDocument = gql`
+    query User {
+  me {
+    id
+    email
+  }
+}
+    `;
 
 /**
  * __useUserQuery__
@@ -512,33 +524,19 @@ export const UserDocument = gql`
  *   },
  * });
  */
-export function useUserQuery(
-  baseOptions?: Apollo.QueryHookOptions<UserQuery, UserQueryVariables>,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<UserQuery, UserQueryVariables>(UserDocument, options);
-}
-export function useUserLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<UserQuery, UserQueryVariables>,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<UserQuery, UserQueryVariables>(
-    UserDocument,
-    options,
-  );
-}
-export function useUserSuspenseQuery(
-  baseOptions?: Apollo.SuspenseQueryHookOptions<UserQuery, UserQueryVariables>,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useSuspenseQuery<UserQuery, UserQueryVariables>(
-    UserDocument,
-    options,
-  );
-}
+export function useUserQuery(baseOptions?: Apollo.QueryHookOptions<UserQuery, UserQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<UserQuery, UserQueryVariables>(UserDocument, options);
+      }
+export function useUserLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<UserQuery, UserQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<UserQuery, UserQueryVariables>(UserDocument, options);
+        }
+export function useUserSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<UserQuery, UserQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<UserQuery, UserQueryVariables>(UserDocument, options);
+        }
 export type UserQueryHookResult = ReturnType<typeof useUserQuery>;
 export type UserLazyQueryHookResult = ReturnType<typeof useUserLazyQuery>;
-export type UserSuspenseQueryHookResult = ReturnType<
-  typeof useUserSuspenseQuery
->;
+export type UserSuspenseQueryHookResult = ReturnType<typeof useUserSuspenseQuery>;
 export type UserQueryResult = Apollo.QueryResult<UserQuery, UserQueryVariables>;
