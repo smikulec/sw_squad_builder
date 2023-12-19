@@ -3,6 +3,7 @@
 import { ReactNode } from 'react';
 import { Poppins } from 'next/font/google';
 import { Header } from '../Header';
+import { useCurrentUser } from '@/hooks';
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -10,6 +11,8 @@ const poppins = Poppins({
 });
 
 const Layout = ({ children }: { children: ReactNode }) => {
+  useCurrentUser();
+
   return (
     <body className={poppins.className}>
       <Header />
