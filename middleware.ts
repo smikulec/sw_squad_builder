@@ -19,4 +19,4 @@ export default withAuth(
   }
 );
 
-export const config = { matcher: [ROUTES.DASHBOARD_URL, '/'] };
+export const config = { matcher: ['/dashboard', '/'] };
