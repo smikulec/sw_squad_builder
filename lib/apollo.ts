@@ -10,8 +10,9 @@ import {
   SSRMultipartLink,
 } from '@apollo/experimental-nextjs-app-support/ssr';
 import { getLocalStorageItem } from './utils';
+import { STORAGE_TOKEN_KEY } from '@/constants';
 
-const storedToken = getLocalStorageItem('userToken');
+const storedToken = getLocalStorageItem(STORAGE_TOKEN_KEY);
 
 export const makeApolloClient = () => {
   const userToken = storedToken ? JSON.parse(storedToken) : '';
