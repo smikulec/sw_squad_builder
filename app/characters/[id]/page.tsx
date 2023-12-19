@@ -1,6 +1,7 @@
 'use client';
 
 import { useGetPersonByIdQuery } from '@/graphql/generated/schema';
+import { ROUTES } from '@/routes';
 import { ArrowLeftCircleIcon } from 'lucide-react';
 import Link from 'next/link';
 
@@ -76,7 +77,7 @@ const Page = ({ params: { id } }: { params: { id: string } }) => {
 
   return (
     <div className="bg-black/70 p-6 sm:p-8 sm:pl-20 lg:p-16 lg:pl-36">
-      <Link href="/dashboard" className="mb-6 block text-white">
+      <Link href={ROUTES.DASHBOARD_URL} className="mb-6 block text-white">
         <ArrowLeftCircleIcon size={32} />
       </Link>
       <h1 className="text-4xl font-black text-white">

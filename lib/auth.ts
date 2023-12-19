@@ -1,4 +1,5 @@
 import { loginHandler, signupHandler } from '@/graphql/mutations/handlers';
+import { ROUTES } from '@/routes';
 import { NextAuthOptions } from 'next-auth';
 
 import CredentialsProvider from 'next-auth/providers/credentials';
@@ -52,6 +53,6 @@ export const authConfig: NextAuthOptions = {
     },
   },
   pages: {
-    signIn: '/login',
+    signIn: ROUTES.LOGIN_URL,
   },
 };

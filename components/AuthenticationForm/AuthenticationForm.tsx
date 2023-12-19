@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import Link from 'next/link';
 import Loader from '../ui/Loader';
+import { ROUTES } from '@/routes';
 
 const AuthenticationForm = ({ isSignUp = false }) => {
   const {
@@ -34,7 +35,7 @@ const AuthenticationForm = ({ isSignUp = false }) => {
         if (response.error) {
           setAuthenticationError('Incorrect email or password.');
         } else {
-          router.replace('/dashboard');
+          router.replace(ROUTES.DASHBOARD_URL);
         }
       }
     } catch (error) {
@@ -84,7 +85,10 @@ const AuthenticationForm = ({ isSignUp = false }) => {
 
           <p className="h- pt-10 text-center">
             {isSignUp ? 'Already have an account?' : "Don't have an account?"}{' '}
-            <Link href={isSignUp ? '/login' : '/signin'} className="underline">
+            <Link
+              href={isSignUp ? ROUTES.LOGIN_URL : ROUTES.SIGNIN_URL}
+              className="underline"
+            >
               {isSignUp ? 'Login now' : 'Sign up now'}
             </Link>
           </p>
