@@ -4,25 +4,26 @@ import { Button, Input } from '../ui';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import Link from 'next/link';
-import Loader from '../ui/Loader';
 import { ROUTES } from '@/routes';
+
+type FormData = {
+  email: string;
+  password: string;
+};
 
 const AuthenticationForm = ({ isSignUp = false }) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<FormData>({
     defaultValues: { email: '', password: '' },
   });
   const [authenticationError, setAuthenticationError] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const router = useRouter();
 
-  const handleAuthentication = async (data: {
-    email: string;
-    password: string;
-  }) => {
+  const handleAuthentication = async (data: FormData) => {
     try {
       setIsSubmitting(true);
       const response = await signIn('credentials', {
@@ -79,8 +80,13 @@ const AuthenticationForm = ({ isSignUp = false }) => {
             <p className="mb-5 text-sm text-red-500">{authenticationError}</p>
           )}
 
-          <Button type="submit" className="mt-3 w-full" disabled={isSubmitting}>
-            {isSubmitting ? <Loader /> : 'Login'}
+          <Button
+            type="submit"
+            className="mt-3 w-full"
+            disabled={isSubmitting}
+            loading={isSubmitting}
+          >
+            {isSignUp ? 'Sign up' : 'Log in'}
           </Button>
 
           <p className="h- pt-10 text-center">
