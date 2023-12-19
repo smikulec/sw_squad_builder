@@ -1,20 +1,23 @@
-import * as React from 'react';
-
 import { cn } from '@/lib/utils';
+import {
+  ChangeEvent,
+  FocusEvent,
+  InputHTMLAttributes,
+  forwardRef,
+} from 'react';
 
-export interface InputProps
-  extends React.InputHTMLAttributes<HTMLInputElement> {
+export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   type: 'text' | 'password' | 'email' | 'number';
   label?: string;
   error?: { message?: string };
   name?: string;
   defaultValue?: string;
-  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void;
+  onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
+  onBlur?: (event: FocusEvent<HTMLInputElement>) => void;
   inputClassName?: string;
 }
 
-const Input = React.forwardRef<HTMLInputElement, InputProps>(
+const Input = forwardRef<HTMLInputElement, InputProps>(
   (
     {
       className,
