@@ -164,7 +164,7 @@ const CreateSquadForm = ({
   };
 
   const squadCreatedSuccessMessage = createdSquadData
-    ? 'Squad was created successfully'
+    ? 'The squad was created successfully.'
     : '';
   const errorCreateSquadMessage = errorCreateSquad
     ? 'There was an error when creating the squad.'

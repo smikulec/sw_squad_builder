@@ -14,10 +14,10 @@ const SquadList = ({ data, error, loading }: SquadsForUserQueryHookResult) => {
       <h2 className="mb-4 py-6 text-4xl font-black">Your squads</h2>
 
       {error ? (
-        <p className="text-red-500">There was an error when fetching data.</p>
-      ) : null}
-
-      {loading ? (
+        <p className="text-red-500">
+          There was an error fetching data. Please try again.
+        </p>
+      ) : loading ? (
         <p>Loading...</p>
       ) : loadedData && loadedData.length > 0 ? (
         <div>
