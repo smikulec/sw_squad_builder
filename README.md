@@ -23,7 +23,7 @@ NEXTAUTH_SECRET= random string you generate or write on your own
 
 NEXTAUTH_URL= http://localhost:3000/
 
-NEXT_PUBLIC_GRAPHQL_ENDPOINT= public endpoint url for this task
+NEXT_PUBLIC_GRAPHQL_ENDPOINT= corresponding graphql endpoint url
 ```
 
 3. Run the development server
