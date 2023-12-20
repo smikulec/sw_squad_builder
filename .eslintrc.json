@@ -27,7 +27,7 @@
             "position": "before"
           }
         ],
-        "newlines-between": "always"
+        "newlines-between": "ignore"
       }
     ],
     "prettier/prettier": "warn"
